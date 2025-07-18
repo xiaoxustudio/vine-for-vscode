@@ -1,0 +1,83 @@
+{
+	"name": "vine-for-vscode",
+	"displayName": "vine-for-vscode",
+	"description": "vine for vscode",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.96.4"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"languages": [
+			{
+				"id": "vine-language",
+				"aliases": [
+					"Vine",
+					"vine",
+					"vine-language"
+				],
+				"extensions": [
+					"vine"
+				],
+				"icon": {
+					"light": "resources/icon.ico",
+					"dark": "resources/icon.ico"
+				},
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"commands": [
+			{
+				"command": "vine-language.reload",
+				"title": "Reload Vine Language Server"
+			}
+		],
+		"grammars": [
+			{
+				"language": "vine-language",
+				"scopeName": "source.vine",
+				"path": "./syntaxes/vine-language.tmLanguage.json"
+			}
+		]
+	},
+	"configuration": {
+		"type": "object",
+		"title": "Example configuration",
+		"properties": {
+			"languageServerExample.maxNumberOfProblems": {
+				"scope": "resource",
+				"type": "number",
+				"default": 100,
+				"description": "Controls the maximum number of problems produced by the server."
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "vscode-test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^10.0.6",
+		"@types/node": "18.x",
+		"@types/vscode": "^1.102.0",
+		"@typescript-eslint/eslint-plugin": "^7.0.2",
+		"@typescript-eslint/parser": "^7.0.2",
+		"@vscode/test-cli": "^0.0.6",
+		"@vscode/test-electron": "^2.3.9",
+		"eslint": "^8.56.0",
+		"typescript": "^5.3.3"
+	},
+	"dependencies": {
+		"vine-lang": "^1.0.27",
+		"vscode-languageclient": "^7.0.0",
+		"vscode-languageserver": "^7.0.0",
+		"vscode-languageserver-textdocument": "^1.0.1"
+	}
+}
