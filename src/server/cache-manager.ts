@@ -1,6 +1,6 @@
 import { CompletionItem, CompletionItemKind } from 'vscode-languageserver/node';
-import { Expr, FunctionDecl, VariableDecl } from "vine-lang/dist/node";
-import { Keywords } from "vine-lang/dist/keywords";
+import { Expr, FunctionDecl, Literal, VariableDecl } from "vine-lang/dist/node";
+import { Keywords, Token } from "vine-lang/dist/keywords";
 import { toRealValue } from "vine-lang";
 
 interface DocumentCache {
@@ -78,7 +78,7 @@ export class CacheManager {
     }
 
     private buildFunctionSignature(func: FunctionDecl | any): string {
-        const params = func.params?.map(p => toRealValue(p)) || [];
+        const params = func.params?.map((p: Literal | Token) => toRealValue(p)) || [];
         return `(${params.join(', ')})`;
     }
 
