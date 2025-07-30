@@ -2,30 +2,27 @@
 <img alt="logo" src="./resources/Vine.png" width="120" style="margin-bottom: 10px;">
 </p>
 
-<h2 align="center">vine-for-vscode </h2>
+<h2 align="center">vine-for-vscode</h2>
 
 - [简体中文](./README_CN.md)
 - [English](./README.md)
 
-在`VScode`为`Vine`提供语言支持的插件。
+The plugin that provides language support for `Vine` in `VScode`.
 
-# 功能
+# Preview 
 
-- 语法高亮
-- 代码补全
-- 代码跳转
-- 代码提示
-- more
+- Grammar highlighting
+- Code completion
+- Code navigation
+- Code hints - more
 
-更多功能还在开发中...
+More functions are still under development... 
 
-# 关于
+# Regarding 
 
-作者：[徐然](https://github.com/xiaoxustudio)
-
-联系方式：[xugame@qq.com](emailto://xugame@qq.com)
-
-欢迎提出您宝贵的 **issue**，我们将会处理。
+Author: [Xu Ran](https://github.com/xiaoxustudio) 
+Contact Information: [xugame@qq.com](mailto:xugame@qq.com) 
+Please feel free to raise your valuable "issue", and we will handle it. 
 
 # LICENSE
 
