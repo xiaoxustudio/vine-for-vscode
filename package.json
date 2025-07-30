@@ -3,6 +3,10 @@
 	"displayName": "vine-for-vscode",
 	"description": "vine for vscode",
 	"version": "0.0.1",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/xiaoxustudio/vine-for-vscode.git"
+	},
 	"engines": {
 		"vscode": "^1.96.4"
 	},
