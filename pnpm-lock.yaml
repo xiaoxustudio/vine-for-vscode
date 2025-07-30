@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       vine-lang:
-        specifier: ^1.0.27
-        version: 1.0.27
+        specifier: ^1.0.29
+        version: 1.0.29
       vscode-languageclient:
         specifier: ^7.0.0
         version: 7.0.0
@@ -932,8 +932,8 @@ packages:
     resolution: {integrity: sha512-kiGUalWN+rgBJ/1OHZsBtU4rXZOfj/7rKQxULKlIzwzQSvMJUUNgPwJEEh7gU6xEVxC0ahoOBvN2YI8GH6FNgA==}
     engines: {node: '>=10.12.0'}
 
-  vine-lang@1.0.27:
-    resolution: {integrity: sha512-qu20iSreq/IIVbTp0omeDvtU4eACWuKZT4LhwrQ3dzK36rwy+Rxu4UADowy2M8nAaLXtuCVG28K8TgOqSbEbHA==}
+  vine-lang@1.0.29:
+    resolution: {integrity: sha512-ScvUvZUK3I8P8L+GYPHycy3OJjj4mEcRe39TCFuM8XWPcvLI0iAIcYe0nQpnaq/JowM8hWUReW5AJSyBwxnjcA==}
     engines: {node: '>=18.0.0'}
 
   vscode-jsonrpc@6.0.0:
@@ -979,6 +979,18 @@ packages:
 
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
+
+  ws@8.18.3:
+    resolution: {integrity: sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
 
   y18n@5.0.8:
     resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}
@@ -1938,7 +1950,12 @@ snapshots:
       '@types/istanbul-lib-coverage': 2.0.6
       convert-source-map: 2.0.0
 
-  vine-lang@1.0.27: {}
+  vine-lang@1.0.29:
+    dependencies:
+      ws: 8.18.3
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   vscode-jsonrpc@6.0.0: {}
 
@@ -1982,6 +1999,8 @@ snapshots:
       strip-ansi: 7.1.0
 
   wrappy@1.0.2: {}
+
+  ws@8.18.3: {}
 
   y18n@5.0.8: {}
 

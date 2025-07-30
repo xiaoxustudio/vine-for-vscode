@@ -10,16 +10,15 @@ import {
 	TextDocumentPositionParams,
 	TextDocumentSyncKind,
 	InitializeResult,
+	Hover,
 } from "vscode-languageserver/node";
 import { tokenlize, Parser } from "vine-lang";
-import Completion from "./completion";
-import Definition from "./definition";
+import CompletionHandle from "./completion";
+import DefinitionHandle from "./definition";
+import HoverHandle from "./hover";
 import { TextDocument } from "vscode-languageserver-textdocument";
 
-// Vine
-
-let OpenedAST = []; // 已打开的文件AST（不包含当前，如果退出当前，则当前进入这里）
-let currentAST: any[] = []; // 当前文件AST
+import { CacheManager } from './cache-manager';
 
 // 创建连接
 const connection = createConnection(ProposedFeatures.all);
@@ -95,8 +94,12 @@ documents.onDidChangeContent(change => {
 		const text = change.document.getText() ?? "";
 		const token = tokenlize(text);
 		const ast = new Parser().parse(token);
-		currentAST = ast.body;
-	} catch { }
+		CacheManager.getInstance().updateDocument(
+			change.document.uri,
+			ast.body,
+			change.document.version
+		);
+	} catch {}
 });
 
 // 自动补全
@@ -107,7 +110,7 @@ connection.onCompletion(
 		_workDoneProgress,
 		_resultProgress
 	): CompletionItem[] => {
-		return Completion(currentAST, _textDocumentPosition) as CompletionItem[];
+		return CacheManager.getInstance().getCompletionItems(_textDocumentPosition.textDocument.uri);
 	}
 );
 
@@ -122,7 +125,16 @@ connection.onDefinition(
 		_token,
 		_workDoneProgress
 	) => {
-		return Definition(currentAST, _textDocumentPosition, documents);
+		const ast = CacheManager.getInstance().getAST(_textDocumentPosition.textDocument.uri);
+		return ast ? DefinitionHandle(ast, _textDocumentPosition, documents) : null;
+	}
+);
+
+// Hover 定义
+connection.onHover(
+	(_textDocumentPosition: TextDocumentPositionParams) => {
+		const ast = CacheManager.getInstance().getAST(_textDocumentPosition.textDocument.uri);
+		return ast ? HoverHandle(ast, _textDocumentPosition, documents) as Hover : null;
 	}
 );
 

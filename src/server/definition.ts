@@ -5,6 +5,7 @@ import {
 	TextDocumentPositionParams,
 	TextDocuments,
 } from "vscode-languageserver/node";
+import { getPos } from "./util";
 
 export default (
 	currentAST: Expr[],
@@ -18,20 +19,7 @@ export default (
 		if (!document) {
 			return [];
 		}
-		const lineText = document.getText({
-			start: { line: position.line, character: 0 },
-			end: { line: position.line + 1, character: 0 },
-		});
-		let charIdx = position.character;
-		let start = charIdx;
-		let end = charIdx;
-		while (start > 0 && /[a-zA-Z0-9_]/.test(lineText[start - 1])) {
-			start--;
-		}
-		while (end < lineText.length && /[a-zA-Z0-9_]/.test(lineText[end])) {
-			end++;
-		}
-
+		const [lineText, start, end] = getPos(document, position);
 		const currentChar = lineText.slice(start, end);
 		const targets = currentAST
 			.filter(
@@ -60,7 +48,6 @@ export default (
 				};
 			});
 		if (targets) {
-			console.log(targets);
 			return targets;
 		}
 		return [];
