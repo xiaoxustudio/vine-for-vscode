@@ -7,7 +7,6 @@ import {
 	TextDocumentPositionParams,
 } from "vscode-languageserver/node";
 
-/* ================================== 自动补全 ================================== */
 export default (
 	currentAST: Expr[],
 	_textDocumentPosition: TextDocumentPositionParams

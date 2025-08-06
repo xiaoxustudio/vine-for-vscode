@@ -2,17 +2,19 @@
 	"name": "vine-for-vscode",
 	"displayName": "vine-for-vscode",
 	"description": "vine for vscode",
+	"icon": "resources/Vine.png",
 	"version": "0.0.1",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/xiaoxustudio/vine-for-vscode.git"
 	},
 	"engines": {
-		"vscode": "^1.96.4"
+		"vscode": "^1.102.0"
 	},
 	"categories": [
 		"Programming Languages"
 	],
+	"publisher": "xuran",
 	"main": "./out/extension.js",
 	"contributes": {
 		"languages": [
@@ -49,7 +51,7 @@
 	},
 	"configuration": {
 		"type": "object",
-		"title": "Example configuration",
+		"title": "Vine Language Server configuration",
 		"properties": {
 			"languageServerExample.maxNumberOfProblems": {
 				"scope": "resource",
@@ -60,12 +62,13 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
+		"vscode:prepublish": "pnpm run compile",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
+		"pretest": "pnpm run compile && pnpm run lint",
 		"lint": "eslint src --ext ts",
-		"test": "vscode-test"
+		"test": "vscode-test",
+		"package": "pnpm vsce package"
 	},
 	"devDependencies": {
 		"@types/mocha": "^10.0.6",

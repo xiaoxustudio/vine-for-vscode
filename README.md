@@ -20,8 +20,10 @@ More functions are still under development...
 
 # Regarding 
 
-Author: [Xu Ran](https://github.com/xiaoxustudio) 
-Contact Information: [xugame@qq.com](mailto:xugame@qq.com) 
+Author: [Xu Ran](https://github.com/xiaoxustudio)   
+
+Contact Information: [xugame@qq.com](mailto:xugame@qq.com)   
+
 Please feel free to raise your valuable "issue", and we will handle it. 
 
 # LICENSE

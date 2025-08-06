@@ -1,0 +1,36 @@
+name: Publish VS Code Extension
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v3
+      with:
+        version: 9
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: pnpm
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Install vsce
+      run: pnpm install -g @vscode/vsce@3.0.0
+      
+    - name: Build extension
+      run: pnpm run build
+
+    - name: Publish to Visual Studio Code Marketplace
+      run: vsce publish
+      env:
+        VSCE_PAT: ${{ secrets.VSCE_PAT }}
