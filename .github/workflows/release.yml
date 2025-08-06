@@ -1,5 +1,9 @@
 name: Publish VS Code Extension
 
+permissions:
+  contents: write
+  id-token: write
+
 on:
   push:
     tags:
@@ -28,7 +32,12 @@ jobs:
       run: pnpm install -g @vscode/vsce@3.0.0
       
     - name: Build extension
-      run: pnpm run build
+      run: pnpm run compile
+
+    - run: npx changelogithub
+      continue-on-error: true
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Publish to Visual Studio Code Marketplace
       run: vsce publish
